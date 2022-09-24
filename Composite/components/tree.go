@@ -1,6 +1,9 @@
 package components
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 //textTree is the root container for subesquent child TextElements
 type textTree struct {
@@ -29,12 +32,21 @@ func NewTextTree(raw string) *textTree {
 	return &t
 }
 
-// Print recursively calls Print on all the tree's children (sentences).
-func (t *textTree) Print() error {
-	for _, c := range t.children {
+// Print recursively calls Print on all the tree's children (sentences) with added spaces in between child prints for readability.
+func (t *textTree) Print() {
+	for i, c := range t.children {
+		if i > 0 {
+			fmt.Print(" ")
+		}
 		c.Print()
 	}
-	return nil
+}
+
+func (t *textTree) DiagramPrint() {
+	for i, c := range t.children {
+		fmt.Printf("S%d:\n", i+1)
+		c.DiagramPrint()
+	}
 }
 
 func (t *textTree) AddChild(c TextElement) error {

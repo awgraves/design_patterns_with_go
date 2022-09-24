@@ -38,7 +38,15 @@ func (s *sentence) Print() {
 			fmt.Print(" ")
 		}
 	}
-	fmt.Print(".\n")
+	fmt.Print(".")
+}
+
+func (s *sentence) DiagramPrint() {
+	for i, c := range s.children {
+		fmt.Printf("\tW%d: ", i+1)
+		c.Print()
+		fmt.Printf("\n")
+	}
 }
 
 func (s *sentence) AddChild(t TextElement) error {

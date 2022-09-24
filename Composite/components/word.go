@@ -22,6 +22,10 @@ func (w *word) Print() {
 	fmt.Print(w.text)
 }
 
+func (w *word) DiagramPrint() {
+	w.Print()
+}
+
 func (w *word) AddChild(t TextElement) error {
 	return errors.New("word cannot have children")
 }
