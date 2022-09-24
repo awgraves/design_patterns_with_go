@@ -47,7 +47,7 @@ func (s *sentence) Print() {
 func (s *sentence) DiagramPrint() {
 	for i, c := range s.children {
 		fmt.Printf("\tW%d: ", i+1)
-		c.Print()
+		c.DiagramPrint()
 		fmt.Printf("\n")
 	}
 }
