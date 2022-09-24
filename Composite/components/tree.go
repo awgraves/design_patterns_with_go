@@ -2,10 +2,12 @@ package components
 
 import "strings"
 
+//textTree is the root container for subesquent child TextElements
 type textTree struct {
 	children []TextElement
 }
 
+//NewTextTree takes a raw string of text, breaks it into child sentence composite TextElement nodes, then returns an initialized textTree to contain them.
 func NewTextTree(raw string) *textTree {
 	rawSentences := strings.Split(raw, ".")
 
@@ -18,12 +20,16 @@ func NewTextTree(raw string) *textTree {
 			continue
 		}
 		s := NewSentence(rs)
-		t.AddChild(s)
+		err := t.AddChild(s)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	return &t
 }
 
+// Print recursively calls Print on all the tree's children (sentences).
 func (t *textTree) Print() error {
 	for _, c := range t.children {
 		c.Print()
@@ -31,6 +37,7 @@ func (t *textTree) Print() error {
 	return nil
 }
 
-func (t *textTree) AddChild(c TextElement) {
+func (t *textTree) AddChild(c TextElement) error {
 	t.children = append(t.children, c)
+	return nil
 }

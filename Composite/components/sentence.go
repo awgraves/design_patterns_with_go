@@ -5,26 +5,32 @@ import (
 	"strings"
 )
 
+//sentence is a composite TextElement that contains children leaf nodes
 type sentence struct {
 	children []TextElement
 }
 
+//NewSentence converts a raw sentence string into an initialized sentence instance that contains child word leaf nodes.
 func NewSentence(raw string) *sentence {
 	cleaned := strings.Trim(raw, " ")
 	cleaned = strings.TrimRight(cleaned, ".")
 	rws := strings.Split(cleaned, " ")
 
-	children := []TextElement{}
+	s := sentence{
+		children: []TextElement{},
+	}
 	for _, rw := range rws {
 		w := NewWord(rw)
-		children = append(children, w)
+		err := s.AddChild(w)
+		if err != nil {
+			panic(err)
+		}
 	}
 
-	return &sentence{
-		children: children,
-	}
+	return &s
 }
 
+// Print recursively calls Print on all the sentence's children (words).  It also adds spaces in between each element and terminates with a period for punctuation (.)
 func (s *sentence) Print() {
 	for i, c := range s.children {
 		c.Print()
