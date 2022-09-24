@@ -10,7 +10,8 @@ type sentence struct {
 	children []TextElement
 }
 
-//NewSentence converts a raw sentence string into an initialized sentence instance that contains child word leaf nodes.
+//NewSentence converts a raw sentence string into an initialized sentence
+//instance that contains child word leaf nodes.
 func NewSentence(raw string) *sentence {
 	cleaned := strings.Trim(raw, " ")
 	cleaned = strings.TrimRight(cleaned, ".")
@@ -30,7 +31,8 @@ func NewSentence(raw string) *sentence {
 	return &s
 }
 
-// Print recursively calls Print on all the sentence's children (words).  It also adds spaces in between each element and terminates with a period for punctuation (.)
+//Print recursively calls Print on all the sentence's children (words).
+//It also adds spaces in between each element and terminates with a period for punctuation (.)
 func (s *sentence) Print() {
 	for i, c := range s.children {
 		c.Print()
@@ -41,6 +43,7 @@ func (s *sentence) Print() {
 	fmt.Print(".")
 }
 
+//DiagramPrint is similar to Print except the output is formatted to display as a tree
 func (s *sentence) DiagramPrint() {
 	for i, c := range s.children {
 		fmt.Printf("\tW%d: ", i+1)

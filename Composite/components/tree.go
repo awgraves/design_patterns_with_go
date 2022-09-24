@@ -42,6 +42,7 @@ func (t *textTree) Print() {
 	}
 }
 
+//DiagramPrint is similar to Print except the output is formatted to display as a tree
 func (t *textTree) DiagramPrint() {
 	for i, c := range t.children {
 		fmt.Printf("S%d:\n", i+1)
