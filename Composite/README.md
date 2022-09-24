@@ -33,3 +33,5 @@ Two methods can be called on the tree, which will recursively call the same inte
 
 1. `tree.Print()` will print the text to stdout like normal sentences.
 2. `tree.DiagramPrint()` will output the text broken down by sentence and by word within that sentence.
+
+![Screen Shot 2022-09-24 at 3 11 39 PM](https://user-images.githubusercontent.com/34633964/192114738-1e476a4e-8628-42c8-9f13-50860b245b79.png)
